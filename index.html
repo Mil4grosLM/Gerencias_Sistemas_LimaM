@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upla Gerencia I - II</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="LogoUpla2026.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
@@ -18,7 +17,7 @@
         }
         body { background-color: #f4f7f6; font-family: 'Inter', 'Segoe UI', sans-serif; display: flex; min-height: 100vh; margin: 0; }
 
-        .sidebar { width: 280px; background: var(--sidebar-bg); color: white; position: fixed; height: 100vh; padding: 25px; z-index: 1000; }
+        .sidebar { width: 280px; background: var(--sidebar-bg); color: white; position: fixed; height: 100vh; padding: 25px; z-index: 1000; transition: 0.3s; }
         .logo-container { display: flex; align-items: center; padding: 10px 5px; margin-bottom: 40px; }
         .logo-img { max-height: 45px; margin-right: 15px; }
         .logo-text { font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; margin: 0; }
@@ -28,53 +27,19 @@
         .nav-item.active { background: var(--upla-primary); color: white; box-shadow: 0 4px 15px rgba(0,74,173,0.3); }
         .nav-item i { margin-right: 12px; font-size: 1.4rem; }
 
-        .main-content { margin-left: 280px; width: calc(100% - 280px); }
-        @media (max-width: 768px) {
-    .sidebar { 
-        width: 100% !important; height: auto !important; 
-        position: fixed !important; bottom: 0 !important; top: auto !important; 
-        display: flex !important; flex-direction: row !important; 
-        justify-content: space-around !important; padding: 10px 0 !important; 
-    }
-    .main-content { margin-left: 0 !important; width: 100% !important; padding-bottom: 80px !important; }
-    .logo-container { display: none !important; } /* Oculta logo en el menú de abajo para que no estorbe */
-    .nav-item { margin-bottom: 0 !important; padding: 10px !important; flex-direction: column !important; font-size: 0.8rem !important; }
-    .nav-item i { margin-right: 0 !important; margin-bottom: 5px !important; }
-    .hero-section { height: 300px !important; padding-left: 20px !important; text-align: center !important; }
-}
+        .main-content { margin-left: 280px; width: calc(100% - 280px); transition: 0.3s; }
 
         .hero-section {
             background: linear-gradient(var(--overlay), var(--overlay)), url('GerenciaS.jpg');
             background-size: cover; background-position: center; height: 450px; display: flex; align-items: center; padding-left: 60px; color: white;
         }
 
-        .kpi-card { background: white; border-radius: 16px; padding: 20px; border: none; box-shadow: var(--card-shadow); transition: 0.3s; }
+        .kpi-card { background: white; border-radius: 16px; padding: 20px; border: none; box-shadow: var(--card-shadow); transition: 0.3s; margin-bottom: 15px; }
         .kpi-icon { width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 15px; }
 
-        .week-card { 
-    background-color: #d1e9ff; /* Celeste promedio suave */
-    border: 2px solid #a3d1ff; /* Borde que armoniza con el fondo */
-    border-radius: 20px; 
-    padding: 30px; 
-    transition: 0.4s ease; 
-    cursor: pointer; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.03); 
-}
-
-.week-card:hover { 
-    transform: translateY(-8px); 
-    background-color: #bbdefb; /* Sube la intensidad solo al tocarlo */
-    border-color: #004aad; 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
-}
-
-/* Texto de la semana */
-.week-tag { 
-    color: #0056b3; 
-    font-weight: 700; 
-    font-size: 0.8rem; 
-    text-transform: uppercase; 
-}
+        .week-card { background-color: #d1e9ff; border: 2px solid #a3d1ff; border-radius: 20px; padding: 30px; transition: 0.4s ease; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
+        .week-card:hover { transform: translateY(-8px); background-color: #bbdefb; border-color: #004aad; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .week-tag { color: #0056b3; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
 
         .detail-card { background: white; border-radius: 24px; padding: 40px; box-shadow: var(--card-shadow); }
         .section-label { color: #888; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block;}
@@ -82,6 +47,32 @@
         .view-pane { display: none; padding: 50px; animation: slideUp 0.5s ease forwards; }
         .view-pane.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /*AGREGADO: REGLAS PARA CELULAR (RESPONSIVO)*/
+        @media (max-width: 768px) {
+            body { display: block; } /* Quita el flex lateral */
+            
+            .sidebar { 
+                width: 100%; height: 70px; 
+                bottom: 0; top: auto; /* Mueve el menú abajo */
+                padding: 0; display: flex; 
+                flex-direction: row; justify-content: space-around; 
+                align-items: center; border-radius: 20px 20px 0 0;
+            }
+            .logo-container { display: none; } /* Oculta el logo en menú móvil */
+            
+            .nav-item { margin-bottom: 0; padding: 10px; flex-direction: column; font-size: 0.7rem; color: #fff; }
+            .nav-item i { margin-right: 0; margin-bottom: 4px; font-size: 1.2rem; }
+            .nav-item span { display: block; }
+
+            .main-content { margin-left: 0; width: 100%; padding-bottom: 80px; } /* Espacio para el menú inferior */
+            
+            .hero-section { height: 300px; padding-left: 20px; text-align: center; }
+            .display-4 { font-size: 2.2rem; }
+            
+            .view-pane { padding: 20px; }
+            .p-5 { padding: 1.5rem !important; }
+        }
     </style>
 </head>
 <body>
@@ -92,13 +83,13 @@
         <h1 class="logo-text">UPLA</h1>
     </div>
     <div class="nav-item active" onclick="switchView('home', this)">
-        <i class="bi bi-house-door"></i> Inicio
+        <i class="bi bi-house-door"></i> <span>Inicio</span>
     </div>
     <div class="nav-item" onclick="loadUnit(1, this)">
-        <i class="bi bi-list-task"></i> Unidad I
+        <i class="bi bi-list-task"></i> <span>Unidad I</span>
     </div>
     <div class="nav-item" onclick="loadUnit(2, this)">
-        <i class="bi bi-card-checklist"></i> Unidad II
+        <i class="bi bi-card-checklist"></i> <span>Unidad II</span>
     </div>
 </div>
 
@@ -114,24 +105,24 @@
         
         <div class="container-fluid p-5">
             <div class="row mb-5">
-                <div class="col-md-3">
+                <div class="col-6 col-md-3">
                     <div class="kpi-card text-center">
                         <div class="kpi-icon bg-primary text-white mx-auto"><i class="bi bi-journal-check"></i></div>
                         <h3 class="fw-bold mb-0">8</h3>
-                        <small class="text-muted">Semanas Totales</small>
+                        <small class="text-muted">Semanas</small>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-6 col-md-3">
                     <div class="kpi-card text-center">
                         <div class="kpi-icon bg-success text-white mx-auto"><i class="bi bi-cloud-arrow-up"></i></div>
                         <h3 class="fw-bold mb-0">100%</h3>
-                        <small class="text-muted">Disponibilidad Cloud</small>
+                        <small class="text-muted">Cloud</small>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12 col-md-6 mt-3 mt-md-0">
                     <div class="kpi-card">
                         <div class="d-flex justify-content-between mb-2">
-                            <span class="fw-bold">Progreso del Ciclo</span>
+                            <span class="fw-bold">Progreso</span>
                             <span class="text-primary fw-bold">50%</span>
                         </div>
                         <div class="progress" style="height: 12px; border-radius: 10px;">
@@ -142,7 +133,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                     <div class="data-sidebar p-4 bg-white rounded-4 shadow-sm border-start border-4 border-primary">
                         <div class="mb-4"><label class="section-label">Estudiante</label><div class="fw-bold fs-5">Evelyn Milagros Lima</div></div>
                         <div class="mb-4"><label class="section-label">Docente</label><div class="fw-bold">Dr. Magno Baldeón</div></div>
@@ -152,7 +143,7 @@
                 <div class="col-md-8">
                     <div class="detail-card">
                         <h2 class="text-primary mb-4">Misión Gerencial</h2>
-                        <p class="text-muted fs-5 lh-lg">Optimizar los recursos tecnológicos mediante marcos de trabajo internacionales, garantizando la seguridad, escalabilidad y el retorno de inversión para la organización.</p>
+                        <p class="text-muted fs-5 lh-lg">Optimizar los recursos tecnológicos mediante marcos de trabajo internacionales, garantizando la seguridad, escalabilidad y el retorno de inversión.</p>
                     </div>
                 </div>
             </div>
@@ -176,7 +167,7 @@
                     <h1 id="content-title" class="display-6 fw-bold text-dark mb-4"></h1>
                     <div class="mb-2">
                         <label class="section-label">Tópicos Desarrollados</label>
-                        <div id="content-body" class="row row-cols-2 g-3"></div>
+                        <div id="content-body" class="row row-cols-1 row-cols-md-2 g-3"></div>
                     </div>
                 </div>
             </div>
@@ -213,6 +204,7 @@
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
         }
+        window.scrollTo(0, 0); // Regresa arriba al cambiar de vista
     }
 
     function loadUnit(n, el) {
@@ -221,8 +213,9 @@
         const cont = document.getElementById('weeks-container');
         cont.innerHTML = '';
         u.weeks.forEach(w => {
+            // Se usa "col-12" para que en celular la tarjeta use todo el ancho
             cont.innerHTML += `
-                <div class="col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="week-card" onclick="showDetail(${n}, ${w.id})">
                         <span class="week-tag">${w.t}</span>
                         <div class="fs-4 fw-bold text-dark mt-2 mb-3">${w.d}</div>
